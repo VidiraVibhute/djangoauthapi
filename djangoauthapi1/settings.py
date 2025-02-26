@@ -58,6 +58,18 @@ MIDDLEWARE = [
 
 ROOT_URLCONF = 'djangoauthapi1.urls'
 
+REST_FRAMEWORK = {
+    'DEFAULT_THROTTLE_CLASSES': [
+        'rest_framework.throttling.AnonRateThrottle',  # Throttles anonymous users
+        'rest_framework.throttling.UserRateThrottle',  # Throttles authenticated users
+    ],
+    'DEFAULT_THROTTLE_RATES': {
+        'anon': '3/minute',   # Limit anonymous users to 3 requests per minute
+        'user': '5/minute',   # Limit authenticated users to 5 requests per minute
+    }
+}
+
+
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',

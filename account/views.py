@@ -6,6 +6,7 @@ from django.contrib.auth import authenticate
 from account.renderers import UserRenderer
 from rest_framework_simplejwt.tokens import RefreshToken
 from rest_framework.permissions import IsAuthenticated
+from rest_framework.throttling import UserRateThrottle
 
 # Generate Token Manually
 def get_tokens_for_user(user):
@@ -48,6 +49,7 @@ class UserProfileView(APIView):
 class UserChangePasswordView(APIView):
   renderer_classes = [UserRenderer]
   permission_classes = [IsAuthenticated]
+  throttle_classes = [UserRateThrottle]
   def post(self, request, format=None):
     serializer = UserChangePasswordSerializer(data=request.data, context={'user':request.user})
     serializer.is_valid(raise_exception=True)
