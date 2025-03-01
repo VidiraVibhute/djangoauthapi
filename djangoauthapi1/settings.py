@@ -184,3 +184,31 @@ CORS_ALLOWED_ORIGINS = [
     "http://localhost:3000",
     "http://127.0.0.1:3000",
 ]
+
+LOGGING = {
+    'version': 1,
+    'disable_existing_loggers': False,
+    'handlers': {
+        'file': {
+            'level': 'INFO',
+            'class': 'logging.FileHandler',
+            'filename': 'tracking.log',  # Logs saved in project root
+            },
+        'console':{
+            'level':'INFO',
+            'class':'logging.StreamHandler',
+        },
+    },
+    'loggers': {
+        '':{
+            'handlers':['file','console'],
+            'level':'INFO',
+            'propagate':True,
+        },
+        # 'django': {
+        #     'handlers': ['file'],
+        #     'level': 'INFO',
+        #     'propagate': True,
+        # },
+    },
+}
