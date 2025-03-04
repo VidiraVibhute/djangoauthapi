@@ -8,6 +8,7 @@ from account.renderers import UserRenderer
 from rest_framework_simplejwt.tokens import RefreshToken
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.throttling import UserRateThrottle
+from silk.profiling.profiler import silk_profile
 
 logger = logging.getLogger(__name__)
 
@@ -21,6 +22,8 @@ def get_tokens_for_user(user):
 
 class UserRegistrationView(APIView):
   renderer_classes = [UserRenderer]
+
+  @silk_profile(name='User Registration Profiling')
   def post(self, request, format=None):
     serializer = UserRegistrationSerializer(data=request.data)
     serializer.is_valid(raise_exception=True)
@@ -37,7 +40,10 @@ class UserLoginView(APIView):
     serializer.is_valid(raise_exception=True)
     email = serializer.data.get('email')
     password = serializer.data.get('password')
-    user = authenticate(email=email, password=password)
+
+    with silk_profile(name="User Authentication Block"):  # Block profiling starts here
+            user = authenticate(email=email, password=password)
+    
     if user is not None:
       token = get_tokens_for_user(user)
       logger.info(f"User Login Successful: Email={email}")
@@ -49,6 +55,8 @@ class UserLoginView(APIView):
 class UserProfileView(APIView):
   renderer_classes = [UserRenderer]
   permission_classes = [IsAuthenticated]
+
+  @silk_profile(name='User Profile View')
   def get(self, request, format=None):
     serializer = UserProfileSerializer(request.user)
     logger.info(f"User Profile Accessed: {request.user.email}")
