@@ -1,3 +1,4 @@
+from itertools import count
 import logging
 from rest_framework.response import Response
 from rest_framework import status
@@ -9,6 +10,15 @@ from rest_framework_simplejwt.tokens import RefreshToken
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.throttling import UserRateThrottle
 from silk.profiling.profiler import silk_profile
+from django.contrib.admin.views.decorators import staff_member_required
+from django.shortcuts import render
+from django.db.models import Avg
+import json
+from django.http import JsonResponse
+from silk.models import Request, Profile
+from django.db.models import Avg
+from .models import User
+
 
 logger = logging.getLogger(__name__)
 
@@ -87,5 +97,51 @@ class UserPasswordResetView(APIView):
     serializer.is_valid(raise_exception=True)
     logger.info(f"Password Reset Success: UID={uid}")
     return Response({'msg':'Password Reset Successfully'}, status=status.HTTP_200_OK)
+  
+
+def silk_chart_view(request):
+    return render(request, 'silk/chart.html')
 
 
+def silk_chart_data(request):
+    try:
+        # Total number of Silk-captured requests and profiles
+        total_requests = Request.objects.count()
+        total_profiles = Profile.objects.count()
+
+        # Initialize total metrics
+        total_response_time = 0
+        total_query_time = 0
+        total_query_count = 0
+
+        profiles = Profile.objects.all()
+
+        for profile in profiles:
+            # Add total response time
+            total_response_time += profile.time_taken or 0
+
+            # Get all DB queries associated with this profile
+            queries = profile.queries.all()
+            total_query_count += queries.count()
+
+            # Sum DB query time per profile
+            total_query_time += sum(q.time_taken for q in queries)
+
+        # Compute averages (safely avoiding division by zero)
+        avg_response_time = total_response_time / total_profiles if total_profiles else 0
+        avg_query_time = total_query_time / total_profiles if total_profiles else 0
+        avg_num_queries = total_query_count / total_profiles if total_profiles else 0
+
+        # Return final data (multiplied by 1000 to convert seconds to ms)
+        data = {
+            'requests': total_requests,
+            'profiles': total_profiles,
+            'avg_response_time': round(avg_response_time * 1000, 2),  # ms
+            'avg_query_time': round(avg_query_time * 1000, 2),        # ms
+            'avg_num_queries': round(avg_num_queries, 2)
+        }
+
+        return JsonResponse(data)
+
+    except Exception as e:
+        return JsonResponse({'error': str(e)}, status=500)

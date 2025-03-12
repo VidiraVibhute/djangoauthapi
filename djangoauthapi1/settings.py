@@ -56,6 +56,8 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+
+    "account.middleware.SilkAdminOnlyMiddleware",
 ]
 
 ROOT_URLCONF = 'djangoauthapi1.urls'
@@ -75,7 +77,7 @@ REST_FRAMEWORK = {
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [BASE_DIR / "templates"],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -214,3 +216,10 @@ LOGGING = {
         # },
     },
 }
+
+LOGIN_URL = "/admin/login/"
+
+SILKY_PYTHON_PROFILER = True
+SILKY_PYTHON_PROFILER_BINARY = True
+SILKY_META = True
+SILKY_INTERCEPT_ALL = True
