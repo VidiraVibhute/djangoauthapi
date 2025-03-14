@@ -145,3 +145,46 @@ def silk_chart_data(request):
 
     except Exception as e:
         return JsonResponse({'error': str(e)}, status=500)
+
+def most_time_chart_page(request):
+    return render(request, 'silk/chart_most_time_overall.html')
+
+def most_time_overall_data(request):
+    data = []
+    requests = Request.objects.order_by('-time_taken')[:10]  # top 10 most time-consuming requests
+    for req in requests:
+        data.append({
+            'path': req.path,
+            'time_taken': round(req.time_taken, 2)  # in ms
+        })
+    return JsonResponse(data, safe=False)
+
+
+def most_db_time_chart_view(request):
+    return render(request, 'silk/most_db_chart.html')
+
+
+def most_db_time_api(request):
+    data = (
+        Request.objects.all()
+        .order_by('-time_spent_on_sql')[:10]  # top 10
+        .values('id', 'path', 'time_spent_on_sql')
+    )
+    response = [
+        {'id': d['id'], 'url': d['path'], 'db_time': round(d['time_spent_on_sql'], 2)}
+        for d in data
+    ]
+    return JsonResponse(response, safe=False)
+
+def most_queries_chart_page(request):
+    return render(request, 'silk/most_queries_chart.html')
+
+def most_queries_chart_api(request):
+    data = Request.objects.all().order_by('-num_sql_queries')[:10]
+    response = [
+        {
+            "view_name": r.view_name,
+            "num_queries": r.num_sql_queries
+        } for r in data
+    ]
+    return JsonResponse(response, safe=False)

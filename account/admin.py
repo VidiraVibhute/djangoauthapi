@@ -1,3 +1,4 @@
+from unfold.admin import ModelAdmin
 from django.contrib import admin
 from account.models import User
 from django.contrib.auth.admin import UserAdmin as BaseUserAdmin
