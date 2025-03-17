@@ -62,7 +62,7 @@
             .then(response => response.json())
             .then(data => {
                 const labels = data.map(item => item.url || `Request ${item.id}`);
-                const dbTimes = data.map(item => item.db_time);
+                const dbTimes = data.map(item => item.db_time); // ← this must match what your API sends
 
                 const ctx = document.getElementById('dbTimeChart').getContext('2d');
                 new Chart(ctx, {

@@ -18,6 +18,9 @@ from django.http import JsonResponse
 from silk.models import Request, Profile
 from django.db.models import Avg
 from .models import User
+from collections import defaultdict
+from rest_framework.decorators import api_view
+
 
 
 logger = logging.getLogger(__name__)
@@ -164,17 +167,19 @@ def most_db_time_chart_view(request):
     return render(request, 'silk/most_db_chart.html')
 
 
+@api_view(['GET'])
 def most_db_time_api(request):
-    data = (
-        Request.objects.all()
-        .order_by('-time_spent_on_sql')[:10]  # top 10
-        .values('id', 'path', 'time_spent_on_sql')
-    )
-    response = [
-        {'id': d['id'], 'url': d['path'], 'db_time': round(d['time_spent_on_sql'], 2)}
-        for d in data
-    ]
-    return JsonResponse(response, safe=False)
+    try:
+        top_requests = Request.objects.exclude(meta_time_spent_queries=None).order_by('-meta_time_spent_queries')[:10]
+        data = [
+            {
+                'url': r.path,
+                'db_time': round(r.meta_time_spent_queries, 2)
+            } for r in top_requests
+        ]
+        return Response(data)
+    except Exception as e:
+        return Response({'error': str(e)}, status=500)
 
 def most_queries_chart_page(request):
     return render(request, 'silk/most_queries_chart.html')
@@ -188,3 +193,55 @@ def most_queries_chart_api(request):
         } for r in data
     ]
     return JsonResponse(response, safe=False)
+
+def silk_charts_page(request):
+   return render(request, 'silk/requests_chart.html')
+   
+def silk_metrics_api(request):
+    http_methods = defaultdict(int)
+    time_per_path = defaultdict(float)
+    db_queries_per_path = defaultdict(int)
+    view_requests = defaultdict(int)
+
+    requests = Request.objects.all()
+
+    for req in requests:
+        http_methods[req.method] += 1
+        time_per_path[req.path] += req.time_taken or 0
+        db_queries_per_path[req.path] += req.num_sql_queries or 0
+        view_requests[req.view_name or "Unknown View"] += 1
+
+    data = {
+        'http_methods': dict(http_methods),
+        'time_per_path': dict(time_per_path),
+        'db_queries_per_path': dict(db_queries_per_path),
+        'view_requests': dict(view_requests),
+    }
+    return JsonResponse(data)
+
+def silk_profiling_page(request):
+   return render(request, 'silk/profiling_chart.html')
+
+def silk_profiling_data(request):
+    profiling_data = []
+
+    profiles = Profile.objects.select_related('request').prefetch_related('queries')
+
+    for profile in profiles:
+        func_name = profile.func_name
+        module = profile.name
+        total_time = profile.time_taken or 0.0
+
+        queries = profile.queries.all()
+        db_time = sum(query.time_taken for query in queries if query.time_taken)
+        num_queries = queries.count()
+
+        profiling_data.append({
+            'func_name': func_name,
+            'module': module,
+            'total_time': total_time,
+            'db_time': db_time,
+            'num_queries': num_queries
+        })
+
+    return JsonResponse(profiling_data, safe=False)

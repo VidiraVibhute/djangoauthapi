@@ -1,0 +1,114 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Silk Profiling Chart</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <style>
+        body {
+            background-color: #f8f9fa;
+        }
+        h2 {
+            text-align: center;
+            font-weight: bold;
+            margin: 30px 0;
+        }
+        .chart-container {
+            width: 100%;
+            max-width: 1100px;
+            height: 600px;
+            margin: 0 auto;
+        }
+        .navbar {
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark mb-4">
+        <div class="container-fluid">
+            <a class="navbar-brand fw-bold" href="#">Silk Dashboard</a>
+            <div class="collapse navbar-collapse">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link" href="/silk/">Summary</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/silk/requests/">Requests</a></li>
+                    <li class="nav-item"><a class="nav-link active" href="/silk/profiling/">Profiling</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <h2>Silk Profiling Metrics</h2>
+    <div class="chart-container">
+        <canvas id="profilingChart"></canvas>
+    </div>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            fetch("/api/silk-profiling-data/")
+                .then(res => res.json())
+                .then(data => {
+                    const ctx = document.getElementById('profilingChart').getContext('2d');
+
+                    const labels = data.map(item => `${item.func_name} (${item.module})`);
+
+                    const totalTime = data.map(item => (item.total_time || 0).toFixed(2));
+                    const dbTime = data.map(item => (item.db_time || 0).toFixed(2));
+                    const numQueries = data.map(item => item.num_queries || 0);
+
+                    new Chart(ctx, {
+                        type: 'bar',
+                        data: {
+                            labels: labels,
+                            datasets: [
+                                {
+                                    label: 'Total Time (ms)',
+                                    data: totalTime,
+                                    backgroundColor: '#36A2EB'
+                                },
+                                {
+                                    label: 'DB Time (ms)',
+                                    data: dbTime,
+                                    backgroundColor: '#FF6384'
+                                },
+                                {
+                                    label: 'No. of Queries',
+                                    data: numQueries,
+                                    backgroundColor: '#FFCE56'
+                                }
+                            ]
+                        },
+                        options: {
+                            indexAxis: 'y',
+                            responsive: true,
+                            maintainAspectRatio: false,
+                            scales: {
+                                x: {
+                                    beginAtZero: true
+                                }
+                            },
+                            plugins: {
+                                tooltip: {
+                                    mode: 'index',
+                                    intersect: false
+                                },
+                                legend: {
+                                    position: 'top'
+                                }
+                            }
+                        }
+                    });
+                })
+                .catch(err => console.error("Error loading profiling chart data:", err));
+        });
+    </script>
+
+</body>
+</html>
