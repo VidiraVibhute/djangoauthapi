@@ -103,8 +103,14 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
         'NAME': BASE_DIR / 'db.sqlite3',
+    },
+    'silk': {
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': BASE_DIR / 'silk_db.sqlite3',
     }
 }
+
+DATABASE_ROUTERS = ['account.silk_db_router.SilkDBRouter']
 
 # JWT Configuration
 REST_FRAMEWORK = {
@@ -222,7 +228,11 @@ LOGGING = {
 
 LOGIN_URL = "/admin/login/"
 
-SILKY_PYTHON_PROFILER = True
-SILKY_PYTHON_PROFILER_BINARY = True
-SILKY_META = True
-SILKY_INTERCEPT_ALL = True
+SILKY_INTERCEPT_REQUESTS = False
+ENABLE_DYNAMIC_SILK_PROFILING = False
+
+
+
+
+SILKY_PYTHON_PROFILER_RESULT_PATH = os.path.join(BASE_DIR, 'silk_profiles/')
+

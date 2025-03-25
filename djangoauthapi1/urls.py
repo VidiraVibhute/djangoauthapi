@@ -24,4 +24,3 @@ urlpatterns = [
     path('silk/silk-profiling-page/', silk_profiling_page, name='silk_profiling_page'),
 
 ]
-
