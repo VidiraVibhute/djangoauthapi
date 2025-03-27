@@ -122,7 +122,10 @@
 
 {% block data %}
 <div class="container my-4">
-    <h2 class="mb-4">Silk Profiler Results</h2>
+    {% if selected_app %}
+    <h3>Showing Silk Data for: <strong>{{ selected_app }}</strong></h3>
+{% endif %}
+
 
     {% if results %}
         <div class="row g-4">
@@ -155,7 +158,7 @@
     {% endif %}
 </div>
 <div class="container my-4 text-end">
-    <a href="/silk/silk-profiling-page/" class="btn btn-outline-success">
+    <a href="/api/user/silk-profiling-page/" class="btn btn-outline-success">
         📊 View Profiling Charts
     </a>
 </div>

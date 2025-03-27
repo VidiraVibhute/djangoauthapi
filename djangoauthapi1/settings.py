@@ -44,6 +44,7 @@ INSTALLED_APPS = [
     'rest_framework',
     'rest_framework_simplejwt',
     'account',
+    'demo',
     'silk',
     
 ]
@@ -80,7 +81,10 @@ REST_FRAMEWORK = {
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [BASE_DIR / "templates"],
+        'DIRS': [
+            BASE_DIR / "account/templates",
+            BASE_DIR / "demo/templates",
+        ],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -227,10 +231,15 @@ LOGGING = {
 }
 
 LOGIN_URL = "/admin/login/"
+LOGIN_REDIRECT_URL = "/admin/"
 
-SILKY_INTERCEPT_REQUESTS = False
-ENABLE_DYNAMIC_SILK_PROFILING = False
+SILKY_INTERCEPT_REQUESTS = True
+SILKY_PYTHON_PROFILER = True
+ENABLE_DYNAMIC_SILK_PROFILING = True
 
+SESSION_ENGINE = 'django.contrib.sessions.backends.db'
+SESSION_COOKIE_NAME = 'sessionid'
+SESSION_COOKIE_AGE = 86400  # 1 day
 
 
 

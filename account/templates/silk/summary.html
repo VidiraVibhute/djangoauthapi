@@ -131,6 +131,8 @@
 {% endblock %}
 
 {% block data %}
+
+
 <div class="container py-4">
     <div class="filter-box">
         <form action="." method="post" id="filter-form">
@@ -156,7 +158,16 @@
     </div>
 
     <div class="summary-section">
-        <h2>Summary</h2>
+        {% if request.session.selected_app == 'account' %}
+    <h2>Account App - Silk Summary</h2>
+    <!-- Account-specific queries and statistics -->
+{% elif request.session.selected_app == 'demo' %}
+    <h2>Demo App - Silk Summary</h2>
+    <!-- Demo-specific queries and statistics -->
+{% else %}
+    <h2>Silk Summary</h2>
+{% endif %}
+
         {% if num_requests %}
             <div class="row text-center g-4">
                 <div class="col-md-2 col-6">
@@ -199,7 +210,7 @@
             <p class="no-data">No data available</p>
         {% endif %}
         <div class="text-center mt-4">
-            <a href="/silk-chart/" class="btn btn-outline-primary">View as Chart</a>
+            <a href="/api/user/silk-chart/" class="btn btn-outline-primary">View as Chart</a>
         </div>
     </div>
 
@@ -217,7 +228,7 @@
             <p class="no-data">No data available</p>
         {% endif %}
         <div class="text-center mt-4">
-            <a href="/silk/most-time-chart/" class="btn btn-outline-primary">View as Chart</a>
+            <a href="/api/user/most-time-chart/" class="btn btn-outline-primary">View as Chart</a>
         </div>
     </div>
 
@@ -235,7 +246,7 @@
             <p class="no-data">No data available</p>
         {% endif %}
         <div class="text-center mt-4">
-            <a href="/silk/silk-mosttime-db/" class="btn btn-outline-primary">DB Time Chart</a>
+            <a href="/api/user/silk-mosttime-db/" class="btn btn-outline-primary">DB Time Chart</a>
         </div>
     </div>
 
@@ -253,7 +264,7 @@
             <p class="no-data">No data available</p>
         {% endif %}
         <div class="text-center mt-4">
-            <a href="/silk/most-queries-chart/" class="btn btn-outline-primary">DB Queries Chart</a>
+            <a href="/api/user/most-queries-chart/" class="btn btn-outline-primary">DB Queries Chart</a>
         </div>
     </div>
 </div>

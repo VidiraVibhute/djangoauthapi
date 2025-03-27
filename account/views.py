@@ -13,7 +13,7 @@ from account.renderers import UserRenderer
 from rest_framework_simplejwt.tokens import RefreshToken
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.throttling import UserRateThrottle
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.db.models import Avg
 import json
 from django.http import JsonResponse
@@ -23,6 +23,7 @@ from collections import defaultdict
 from rest_framework.decorators import api_view
 from functools import wraps
 from django.conf import settings
+from django.contrib.auth.decorators import login_required
 
 logger = logging.getLogger(__name__)
 
@@ -185,3 +186,40 @@ def silk_profiling_data(request):
             'num_queries': p.queries.count()
         })
     return JsonResponse(data, safe=False)
+
+
+def silk_app_selection(request):
+    return render(request, 'silk/app_selection.html')
+
+def redirect_to_app_summary(request, app_name):
+    return redirect(f'/silk/{app_name}/summary/')
+
+def filtered_summary(request, app_name):
+    if app_name == 'account':
+        requests = Request.objects.filter(path__startswith='/api/user/')
+    elif app_name == 'demo':
+        requests = Request.objects.filter(path__startswith='/api/demo/')
+    else:
+        requests = Request.objects.all()
+
+    return render(request, 'silk/summary.html', {'requests': requests, 'app_name': app_name})
+
+def filtered_requests(request, app_name):
+    if app_name == 'account':
+        requests = Request.objects.filter(path__startswith='/api/user/')
+    elif app_name == 'demo':
+        requests = Request.objects.filter(path__startswith='/api/demo/')
+    else:
+        requests = Request.objects.all()
+
+    return render(request, 'silk/requests.html', {'requests': requests, 'app_name': app_name})
+
+def filtered_profiling(request, app_name):
+    if app_name == 'account':
+        requests = Request.objects.filter(path__startswith='/api/user/')
+    elif app_name == 'demo':
+        requests = Request.objects.filter(path__startswith='/api/demo/')
+    else:
+        requests = Request.objects.all()
+
+    return render(request, 'silk/profiling.html', {'requests': requests, 'app_name': app_name})

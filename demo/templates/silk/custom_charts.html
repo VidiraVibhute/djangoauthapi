@@ -1,0 +1,47 @@
+{% extends "silk/base.html" %}
+
+{% block content %}
+<h2>Silk Request Performance Chart</h2>
+
+<canvas id="silkChart" width="600" height="300"></canvas>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script>
+    const labels = {{ view_names|safe }};
+    const data = {{ timings|safe }};
+
+    const ctx = document.getElementById('silkChart').getContext('2d');
+    const myChart = new Chart(ctx, {
+        type: 'bar',
+        data: {
+            labels: labels,
+            datasets: [{
+                label: 'Time Taken (ms)',
+                data: data,
+                backgroundColor: 'rgba(54, 162, 235, 0.5)',
+                borderColor: 'rgba(54, 162, 235, 1)',
+                borderWidth: 1
+            }]
+        },
+        options: {
+            responsive: true,
+            plugins: {
+                legend: { display: false },
+                title: {
+                    display: true,
+                    text: 'Top 10 Silk Requests (By Time Taken)'
+                }
+            },
+            scales: {
+                y: {
+                    beginAtZero: true,
+                    title: {
+                        display: true,
+                        text: 'Time (ms)'
+                    }
+                }
+            }
+        }
+    });
+</script>
+{% endblock %}

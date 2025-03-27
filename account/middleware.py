@@ -1,7 +1,7 @@
-import time
-from django.shortcuts import redirect
 from django.conf import settings
 from silk.models import Request
+from django.shortcuts import redirect
+import time
 
 class SilkAdminOnlyMiddleware:
     def __init__(self, get_response):
@@ -9,24 +9,33 @@ class SilkAdminOnlyMiddleware:
 
     def __call__(self, request):
         # Restrict access to Silk dashboard
-        if request.path.startswith("/silk/") and not (request.user.is_authenticated and request.user.is_staff):
+        user = getattr(request, "user", None)
+        if request.path.startswith("/silk/") and not (user and user.is_authenticated and user.is_staff):
             return redirect(settings.LOGIN_URL)
 
-        # Start profiling (time tracking)
+        # Start profiling
         start_time = time.time()
 
         response = self.get_response(request)
 
-        # Measure time taken
+        # Measure total time taken
         total_time = (time.time() - start_time) * 1000  # Convert to ms
 
-        # Save profiling data in Silk (excluding Silk requests)
-        if not request.path.startswith("/silk/"):
-            silk_request = Request.objects.create(
-                path=request.path,
-                method=request.method,
-                time_taken=total_time
-            )
-            silk_request.save()
+        # Determine which app the request belongs to
+        app_name = None
+        if request.path.startswith("/api/user/"):
+            app_name = "account"
+        elif request.path.startswith("/api/demo/"):
+            app_name = "demo"
+
+        # Log request only if profiling is enabled
+        if settings.ENABLE_DYNAMIC_SILK_PROFILING and app_name:
+            Request.objects.create(
+            path=request.path,
+            method=request.method,
+            time_taken=total_time,
+            meta_time=total_time,  # Keep this as a number
+            view_name=app_name  # Store app name in another field if needed
+        )
 
         return response

@@ -182,6 +182,10 @@
 {% endblock %}
 
 {% block data %}
+{% if selected_app %}
+    <h3>Showing Silk Data for: <strong>{{ selected_app }}</strong></h3>
+{% endif %}
+
 <div class="container mt-4">
     {% if results %}
         <div class="row g-4">
@@ -202,7 +206,7 @@
         </div>
     {% endif %}
     <div class="text-center mb-3">
-        <a href="/silk-charts-page/" class="btn btn-primary">View as Chart</a>
+        <a href="/api/user/silk-charts-page/" class="btn btn-primary">View as Chart</a>
     </div>
 </div>
 
