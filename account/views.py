@@ -187,39 +187,15 @@ def silk_profiling_data(request):
         })
     return JsonResponse(data, safe=False)
 
+def user_profiles_view(request):
+    user_profiles = Request.objects.filter(path__startswith="/api/user").order_by('-start_time')
 
-def silk_app_selection(request):
-    return render(request, 'silk/app_selection.html')
+    context = {
+        'user_profiles': user_profiles,
+    }
 
-def redirect_to_app_summary(request, app_name):
-    return redirect(f'/silk/{app_name}/summary/')
+    return render(request, 'silk/user_profiling.html', context)
 
-def filtered_summary(request, app_name):
-    if app_name == 'account':
-        requests = Request.objects.filter(path__startswith='/api/user/')
-    elif app_name == 'demo':
-        requests = Request.objects.filter(path__startswith='/api/demo/')
-    else:
-        requests = Request.objects.all()
 
-    return render(request, 'silk/summary.html', {'requests': requests, 'app_name': app_name})
 
-def filtered_requests(request, app_name):
-    if app_name == 'account':
-        requests = Request.objects.filter(path__startswith='/api/user/')
-    elif app_name == 'demo':
-        requests = Request.objects.filter(path__startswith='/api/demo/')
-    else:
-        requests = Request.objects.all()
 
-    return render(request, 'silk/requests.html', {'requests': requests, 'app_name': app_name})
-
-def filtered_profiling(request, app_name):
-    if app_name == 'account':
-        requests = Request.objects.filter(path__startswith='/api/user/')
-    elif app_name == 'demo':
-        requests = Request.objects.filter(path__startswith='/api/demo/')
-    else:
-        requests = Request.objects.all()
-
-    return render(request, 'silk/profiling.html', {'requests': requests, 'app_name': app_name})

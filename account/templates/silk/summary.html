@@ -158,15 +158,9 @@
     </div>
 
     <div class="summary-section">
-        {% if request.session.selected_app == 'account' %}
-    <h2>Account App - Silk Summary</h2>
-    <!-- Account-specific queries and statistics -->
-{% elif request.session.selected_app == 'demo' %}
-    <h2>Demo App - Silk Summary</h2>
-    <!-- Demo-specific queries and statistics -->
-{% else %}
+        
     <h2>Silk Summary</h2>
-{% endif %}
+
 
         {% if num_requests %}
             <div class="row text-center g-4">

@@ -185,3 +185,30 @@ def silk_profiling_data(request):
             'num_queries': p.queries.count()
         })
     return JsonResponse(data, safe=False)
+
+# def demo_profiles_view(request):
+#     demo_profiles = Request.objects.filter(path__startswith="/api/demo").order_by('-start_time')
+
+#     context = {
+#         'demo_profiles': demo_profiles,
+#     }
+
+#     return render(request, 'silk/demo_profiling.html', context)
+
+def demo_profiles_view(request):
+    # Fetch the profiling data for 'demo'
+    demo_profiles = Request.objects.filter(path__startswith="/api/demo")
+
+    # Aggregate by method and calculate the average time taken for each method
+    aggregated_profiles = demo_profiles.values('method').annotate(
+        avg_time_taken=Avg('time_taken')
+    )
+
+    # Convert the QuerySet to a list of dictionaries (serializable)
+    aggregated_profiles_list = list(aggregated_profiles)
+
+    context = {
+        'aggregated_profiles': aggregated_profiles_list,
+    }
+
+    return render(request, 'silk/demo_profiling.html', context)

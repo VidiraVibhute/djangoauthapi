@@ -1,6 +1,7 @@
 from django.contrib import admin
 from django.urls import path, include
-from account.views import (silk_app_selection, filtered_summary, filtered_requests, filtered_profiling)
+from account.views import user_profiles_view
+from demo.views import demo_profiles_view
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -9,16 +10,9 @@ urlpatterns = [
     path('api/user/', include('account.urls')),
     path('api/demo/', include('demo.urls')),
     path('', include('account.urls')),
-
-
-
-    # Step 1: Show the app selection page
-    path('silk_dashboard/', silk_app_selection, name='silk_app_selection'),
-
-    # Step 2: Directly access the filtered Silk dashboard for each app
-    path('silk/<str:app_name>/summary/', filtered_summary, name='filtered_summary'),
-    path('silk/<str:app_name>/requests/', filtered_requests, name='filtered_requests'),
-    path('silk/<str:app_name>/profiling/', filtered_profiling, name='filtered_profiling'),
-
+  
     path('silk/', include('silk.urls', namespace='silk')),
+
+    path('silk/user_prof/', user_profiles_view, name ='user_profiling'),
+    path('silk/demo_prof/', demo_profiles_view, name = 'demo_profiling'),
 ]

@@ -121,13 +121,27 @@
 {% endblock %}
 
 {% block data %}
+<div class="container py-4">
+    <h2 class="text-2xl text-center text-teal-600 font-semibold mb-6">Silk Profiler</h2>
+    <div class="grid grid-cols-2 gap-6">
+        <!-- Button for API Analytics (for the 'api' app) -->
+        <button type="button" class="btn-custom py-3 bg-white text-teal-600 border-2 border-teal-600 rounded-md hover:bg-teal-100 transition duration-300" onclick="window.location.href='/silk/user_prof/';">
+            Account API Analytics
+        </button>
+        
+        <!-- Button for Staff API Analytics (for the 'api_staff' app) -->
+        <button type="button" class="btn-custom py-3 bg-white text-teal-600 border-2 border-teal-600 rounded-md hover:bg-teal-100 transition duration-300" onclick="window.location.href='/silk/demo_prof/';">
+            Demo API Analytics
+        </button>
+    
+    </div>
 <div class="container my-4">
     {% if selected_app %}
     <h3>Showing Silk Data for: <strong>{{ selected_app }}</strong></h3>
 {% endif %}
 
 
-    {% if results %}
+    <!-- {% if results %}
         <div class="row g-4">
             {% for profile in results %}
                 <div class="col-md-6 col-lg-4">
@@ -161,7 +175,7 @@
     <a href="/api/user/silk-profiling-page/" class="btn btn-outline-success">
         📊 View Profiling Charts
     </a>
-</div>
+</div> -->
 
 {% endblock %}
 
