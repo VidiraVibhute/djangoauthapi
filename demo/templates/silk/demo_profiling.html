@@ -3,36 +3,44 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>API Profiling</title>
-    <!-- Include Tailwind CSS (if not included already) -->
+    <title>Analyze Account API Methods</title>
     <script src="https://cdn.tailwindcss.com"></script>
 </head>
 <body>
 
-{% block content %}
-<div class="container mx-auto py-4">  <!-- mx-auto will center the container -->
-    <h2 class="text-2xl text-center text-teal-600 font-semibold mb-6">APP2 Profiling</h2>
+<div class="container mx-auto py-4">
+    <h2 class="text-2xl text-center text-teal-600 font-semibold mb-6">Account API Method Analysis</h2>
+
+    <!-- Breadcrumbs -->
+    <nav aria-label="breadcrumb" class="my-3 px-6">
+        <ol class="breadcrumb flex text-lg font-semibold">
+            <li class="breadcrumb-item">
+                <a href="{% url 'silk:profiling' %}" class="text-teal-600 hover:underline">Profiling</a>
+            </li>
+            <li class="breadcrumb-item active text-gray-700" aria-current="page"> > Demo</li>
+        </ol>
+    </nav>
 
     <div class="bg-white p-6 rounded-lg shadow-md">
-        <h3 class="text-xl font-semibold text-teal-600 mb-4">Demo API Profiles</h3>
+        <h3 class="text-xl font-semibold text-teal-600 mb-4">Demo API Method Statistics</h3>
 
-        <!-- Check if there are any aggregated profiles to show -->
-        {% if aggregated_profiles %}
+        {% if method_data %}
             <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 gap-4">
-                {% for profile in aggregated_profiles %}
-                    <div class="block mb-4 p-4 rounded-lg shadow-md border-2 border-teal-600 hover:bg-gray-100">
-                        <h4 class="font-semibold text-teal-600">{{ profile.method }}</h4>
-                        <p>Average Time Taken: {{ profile.avg_time_taken|floatformat:2 }} ms</p>
-                        <!-- <p>First Start Time: {{ profile.first_start_time }}</p> -->
-                    </div>
+                {% for method in method_data %}
+                    <a href="{% url 'demo_method_details' method.method %}" class="block mb-4 p-4 rounded-lg shadow-md border-2 border-teal-600 hover:bg-gray-100 transition duration-200">
+                        <h4 class="font-semibold text-teal-600">{{ method.method }}</h4>
+                        <p>Total Requests: <span class="text-teal-600">{{ method.total_requests }}</span></p>
+                        <p>Avg Time (Recent 5): <span class="text-teal-600">{{ method.avg_time }} ms</span></p>
+                        <p>Overall Avg Time: <span class="text-teal-600">{{ method.overall_avg_time|default:"N/A" }} ms</span></p>
+                        <p class="text-sm text-gray-500 mt-2">Click to view recent requests</p>
+                    </a>
                 {% endfor %}
             </div>
         {% else %}
-            <p>No API profiles found.</p>
+            <p>No API data available.</p>
         {% endif %}
     </div>
 </div>
-{% endblock %}
 
 </body>
 </html>

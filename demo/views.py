@@ -195,20 +195,51 @@ def silk_profiling_data(request):
 
 #     return render(request, 'silk/demo_profiling.html', context)
 
+# def demo_profiles_view(request):
+#     # Fetch the profiling data for 'demo'
+#     demo_profiles = Request.objects.filter(path__startswith="/api/demo")
+
+#     # Aggregate by method and calculate the average time taken for each method
+#     aggregated_profiles = demo_profiles.values('method').annotate(
+#         avg_time_taken=Avg('time_taken')
+#     )
+
+#     # Convert the QuerySet to a list of dictionaries (serializable)
+#     aggregated_profiles_list = list(aggregated_profiles)
+
+#     context = {
+#         'aggregated_profiles': aggregated_profiles_list,
+#     }
+
+#     return render(request, 'silk/demo_profiling.html', context)
+
+#methodwise
 def demo_profiles_view(request):
-    # Fetch the profiling data for 'demo'
-    demo_profiles = Request.objects.filter(path__startswith="/api/demo")
+    methods = ["GET", "POST", "PUT", "DELETE"]
+    method_data = []
 
-    # Aggregate by method and calculate the average time taken for each method
-    aggregated_profiles = demo_profiles.values('method').annotate(
-        avg_time_taken=Avg('time_taken')
-    )
+    for method in methods:
+        requests = Request.objects.filter(method=method, path__startswith="/api/demo").order_by('-start_time')
 
-    # Convert the QuerySet to a list of dictionaries (serializable)
-    aggregated_profiles_list = list(aggregated_profiles)
+        avg_time = requests.aggregate(avg_time=Avg('time_taken'))['avg_time'] or 0  
 
-    context = {
-        'aggregated_profiles': aggregated_profiles_list,
-    }
+        overall_avg_result = Request.objects.filter(method=method, time_taken__isnull=False).exclude(time_taken=0).aggregate(avg_time=Avg('time_taken'))
+        overall_avg_time = overall_avg_result['avg_time'] if overall_avg_result['avg_time'] is not None else 0  
 
-    return render(request, 'silk/demo_profiling.html', context)
+        method_data.append({
+            "method": method,
+            "requests": requests[:5],  # Limit recent requests to 5
+            "total_requests": requests.count(),
+            "avg_time": round(avg_time, 2),
+            "overall_avg_time": round(overall_avg_time, 2),
+        })
+
+    return render(request, "silk/demo_profiling.html", {"method_data": method_data})
+
+def demo_method_details(request, method_name):
+    requests = Request.objects.filter(method=method_name, path__startswith="/api/demo").order_by('-start_time')
+
+    return render(request, "silk/demo_method_details.html", {
+        "method_name": method_name,
+        "recent_requests": requests,
+    })
