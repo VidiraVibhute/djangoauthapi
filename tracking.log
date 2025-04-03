@@ -5835,3 +5835,638 @@ Watching for file changes with StatReloader
 C:\Users\HP\Django\djangoauthapi\djangoauthapi1\urls.py changed, reloading.
 Watching for file changes with StatReloader
 Watching for file changes with StatReloader
+Not Found: /favicon.ico
+C:\Users\HP\Django\djangoauthapi\demo\views.py changed, reloading.
+Watching for file changes with StatReloader
+Not Found: /favicon.ico
+C:\Users\HP\Django\djangoauthapi\account\views.py changed, reloading.
+Watching for file changes with StatReloader
+C:\Users\HP\Django\djangoauthapi\account\views.py changed, reloading.
+Watching for file changes with StatReloader
+C:\Users\HP\Django\djangoauthapi\account\views.py changed, reloading.
+Watching for file changes with StatReloader
+Watching for file changes with StatReloader
+Not Found: /favicon.ico
+Watching for file changes with StatReloader
+Internal Server Error: /method-details/GET/
+Traceback (most recent call last):
+  File "C:\Users\HP\Django\env\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\HP\Django\env\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\HP\Django\djangoauthapi\account\views.py", line 243, in method_details
+    return render(request, "silk/method_details.html", {
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\HP\Django\env\Lib\site-packages\django\shortcuts.py", line 25, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\HP\Django\env\Lib\site-packages\django\template\loader.py", line 62, in render_to_string
+    return template.render(context, request)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\HP\Django\env\Lib\site-packages\django\template\backends\django.py", line 107, in render
+    return self.template.render(context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\HP\Django\env\Lib\site-packages\django\template\base.py", line 171, in render
+    return self._render(context)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\HP\Django\env\Lib\site-packages\django\template\base.py", line 163, in _render
+    return self.nodelist.render(context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\HP\Django\env\Lib\site-packages\django\template\base.py", line 1008, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\HP\Django\env\Lib\site-packages\django\template\base.py", line 969, in render_annotated
+    return self.render(context)
+           ^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\HP\Django\env\Lib\site-packages\django\template\defaulttags.py", line 480, in render
+    url = reverse(view_name, args=args, kwargs=kwargs, current_app=current_app)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\HP\Django\env\Lib\site-packages\django\urls\base.py", line 88, in reverse
+    return resolver._reverse_with_prefix(view, prefix, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\HP\Django\env\Lib\site-packages\django\urls\resolvers.py", line 831, in _reverse_with_prefix
+    raise NoReverseMatch(msg)
+django.urls.exceptions.NoReverseMatch: Reverse for 'analyze_expense_methods' not found. 'analyze_expense_methods' is not a valid view function or pattern name.
+Watching for file changes with StatReloader
+C:\Users\HP\Django\djangoauthapi\djangoauthapi1\settings.py changed, reloading.
+Watching for file changes with StatReloader
+Watching for file changes with StatReloader
+Watching for file changes with StatReloader
+C:\Users\HP\Django\djangoauthapi\djangoauthapi1\settings.py changed, reloading.
+Watching for file changes with StatReloader
+Watching for file changes with StatReloader
+C:\Users\HP\Django\djangoauthapi\demo\middleware\custom_silk_middleware.py changed, reloading.
+Watching for file changes with StatReloader
+Watching for file changes with StatReloader
+Saving request for /api/demo/register/ in silk_dev
+Internal Server Error: /api/demo/register/
+Traceback (most recent call last):
+  File "C:\Users\HP\Django\env\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\HP\Django\env\Lib\site-packages\silk\middleware.py", line 86, in __call__
+    self.process_request(request)
+  File "C:\Users\HP\Django\djangoauthapi\demo\middleware\custom_silk_middleware.py", line 19, in process_request
+    request.silk_request.save(using=db_used)
+    ^^^^^^^^^^^^^^^^^^^^
+AttributeError: 'WSGIRequest' object has no attribute 'silk_request'
+C:\Users\HP\Django\djangoauthapi\demo\middleware\custom_silk_middleware.py changed, reloading.
+Watching for file changes with StatReloader
+Watching for file changes with StatReloader
+Watching for file changes with StatReloader
+User Registration: {'email': 'sonal@example.com', 'name': 'sonal', 'password': 'Pass@123', 'password2': 'Pass@123', 'tc': 'True'} - Response: {'refresh': 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoicmVmcmVzaCIsImV4cCI6MTc0Mzc3NTk4NCwiaWF0IjoxNzQzNjg5NTg0LCJqdGkiOiJhNDdjZmY2OGVkYzA0NTY4OTc2OWQwMWU4MDk3MTBjZSIsInVzZXJfaWQiOjJ9.3ROX3ZqHHchJUIdMVbSv9sDEYSnJu5B52htzi971fIw', 'access': 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzQzNjkwNzg0LCJpYXQiOjE3NDM2ODk1ODQsImp0aSI6ImE1ZGIyM2RmOGY0MTRjZTQ5ZmFmNjRjOTBiNzZkNmY2IiwidXNlcl9pZCI6Mn0.n994AT3rRnOsr10dRlSwlvicw05I6d2GiGCQkJcroaY'}
+Exhausted _process_response attempts; not processing request
+User Login Failed: Email=sonal@example.com
+Exhausted _process_response attempts; not processing request
+Not Found: /api/user/login/
+User Registration: {'email': 'Babita@example.com', 'name': 'Babita', 'password': 'Pass@123', 'password2': 'Pass@123', 'tc': 'True'} - Response: {'refresh': 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoicmVmcmVzaCIsImV4cCI6MTc0Mzc3NjMzOSwiaWF0IjoxNzQzNjg5OTM5LCJqdGkiOiJiYmMyYmM3MmFjZmI0Y2IxOGUxYzhmMmZmZmY1ZjY2ZCIsInVzZXJfaWQiOjN9.dS8HgEw86yOZrOSkVL9KUR4CCh_kRerqwNlj2H-q5Z8', 'access': 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzQzNjkxMTM5LCJpYXQiOjE3NDM2ODk5MzksImp0aSI6IjA3YjNhOTk4OTJmOTRkZTFhOGRlYjY4OTZjYjY4ODc3IiwidXNlcl9pZCI6M30.Eg1yyRiI7cZPtX6yA6pspmlmgU480PllkpJRVnKTF4o'}
+Exhausted _process_response attempts; not processing request
+Watching for file changes with StatReloader
+C:\Users\HP\Django\djangoauthapi\djangoauthapi1\settings.py changed, reloading.
+Watching for file changes with StatReloader
+Exhausted _process_response attempts; not processing request
+Bad Request: /api/demo/register/
+Exhausted _process_response attempts; not processing request
+Exhausted _process_response attempts; not processing request
+Not Found: /favicon.ico
+Exhausted _process_response attempts; not processing request
+Exhausted _process_response attempts; not processing request
+Exhausted _process_response attempts; not processing request
+Exhausted _process_response attempts; not processing request
+Exhausted _process_response attempts; not processing request
+Exhausted _process_response attempts; not processing request
+Not Found: /favicon.ico
+Exhausted _process_response attempts; not processing request
+Exhausted _process_response attempts; not processing request
+C:\Users\HP\Django\djangoauthapi\demo\views.py changed, reloading.
+Watching for file changes with StatReloader
+Exhausted _process_response attempts; not processing request
+Not Found: /check-database/
+C:\Users\HP\Django\djangoauthapi\djangoauthapi1\urls.py changed, reloading.
+Watching for file changes with StatReloader
+C:\Users\HP\Django\djangoauthapi\djangoauthapi1\urls.py changed, reloading.
+Watching for file changes with StatReloader
+Exhausted _process_response attempts; not processing request
+C:\Users\HP\Django\djangoauthapi\djangoauthapi1\settings.py changed, reloading.
+Watching for file changes with StatReloader
+Watching for file changes with StatReloader
+Exhausted _process_response attempts; not processing request
+C:\Users\HP\Django\djangoauthapi\djangoauthapi1\settings.py changed, reloading.
+Watching for file changes with StatReloader
+C:\Users\HP\Django\djangoauthapi\djangoauthapi1\settings.py changed, reloading.
+Watching for file changes with StatReloader
+Exhausted _process_response attempts; not processing request
+Exhausted _process_response attempts; not processing request
+Watching for file changes with StatReloader
+Exhausted _process_response attempts; not processing request
+Exhausted _process_response attempts; not processing request
+Exhausted _process_response attempts; not processing request
+Exhausted _process_response attempts; not processing request
+C:\Users\HP\Django\djangoauthapi\djangoauthapi1\settings.py changed, reloading.
+Watching for file changes with StatReloader
+Internal Server Error: /check-database/
+Traceback (most recent call last):
+  File "C:\Users\HP\Django\env\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\HP\Django\env\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\HP\Django\djangoauthapi\demo\views.py", line 252, in check_database
+    silk_db_path = os.path.abspath(settings.DATABASES['silk_live']['NAME'])
+                                   ~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+KeyError: 'silk_live'
+Exhausted _process_response attempts; not processing request
+C:\Users\HP\Django\djangoauthapi\djangoauthapi1\settings.py changed, reloading.
+Watching for file changes with StatReloader
+C:\Users\HP\Django\djangoauthapi\demo\middleware\custom_silk_middleware.py changed, reloading.
+Watching for file changes with StatReloader
+Watching for file changes with StatReloader
+Exhausted _process_response attempts; not processing request
+C:\Users\HP\Django\djangoauthapi\djangoauthapi1\settings.py changed, reloading.
+Watching for file changes with StatReloader
+Exhausted _process_response attempts; not processing request
+Exhausted _process_response attempts; not processing request
+Bad Request: /api/demo/register/
+User Registration: {'email': 'sai@example.com', 'name': 'sai', 'password': 'Pass@123', 'password2': 'Pass@123', 'tc': 'True'} - Response: {'refresh': 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoicmVmcmVzaCIsImV4cCI6MTc0Mzc3OTg2NywiaWF0IjoxNzQzNjkzNDY3LCJqdGkiOiI0ZmVjZTU4YjRlNDk0NDJjOWMxNzg3NWQzODhhZDkyZiIsInVzZXJfaWQiOjR9.VTh_fovVklR0MuhCNXG6xdN1sPoCIOKPkooSf9XniQY', 'access': 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzQzNjk0NjY3LCJpYXQiOjE3NDM2OTM0NjcsImp0aSI6IjIyZjAxOWI4OTRhZDQzNDFhM2ZmYjcxMjY3MjM5YzVjIiwidXNlcl9pZCI6NH0.dqUDp4oMNfQdedzt2DQiMnSIpvpRvyJanJrWffTls6c'}
+Exhausted _process_response attempts; not processing request
+User Login Failed: Email=sai@example.com
+Exhausted _process_response attempts; not processing request
+Not Found: /api/user/login/
+User Login Failed: Email=sai@example.com
+Exhausted _process_response attempts; not processing request
+Not Found: /api/user/login/
+C:\Users\HP\Django\djangoauthapi\djangoauthapi1\settings.py changed, reloading.
+Watching for file changes with StatReloader
+C:\Users\HP\Django\djangoauthapi\demo\middleware\custom_silk_middleware.py changed, reloading.
+Watching for file changes with StatReloader
+C:\Users\HP\Django\djangoauthapi\djangoauthapi1\settings.py changed, reloading.
+Watching for file changes with StatReloader
+Internal Server Error: /silk/
+Traceback (most recent call last):
+  File "C:\Users\HP\Django\env\Lib\site-packages\django\contrib\sessions\backends\base.py", line 244, in _get_session
+    return self._session_cache
+           ^^^^^^^^^^^^^^^^^^^
+AttributeError: 'SessionStore' object has no attribute '_session_cache'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\HP\Django\env\Lib\site-packages\django\utils\module_loading.py", line 30, in import_string
+    return cached_import(module_path, class_name)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\HP\Django\env\Lib\site-packages\django\utils\module_loading.py", line 16, in cached_import
+    return getattr(module, class_name)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: module 'account.silk_db_router' has no attribute 'SilkDBRouter'
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\HP\Django\env\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\HP\Django\djangoauthapi\account\middleware.py", line 13, in __call__
+    if request.path.startswith("/silk/") and not (user and user.is_authenticated and user.is_staff):
+                                                  ^^^^
+  File "C:\Users\HP\Django\env\Lib\site-packages\django\utils\functional.py", line 251, in inner
+    self._setup()
+  File "C:\Users\HP\Django\env\Lib\site-packages\django\utils\functional.py", line 404, in _setup
+    self._wrapped = self._setupfunc()
+                    ^^^^^^^^^^^^^^^^^
+  File "C:\Users\HP\Django\env\Lib\site-packages\django\contrib\auth\middleware.py", line 37, in <lambda>
+    request.user = SimpleLazyObject(lambda: get_user(request))
+                                            ^^^^^^^^^^^^^^^^^
+  File "C:\Users\HP\Django\env\Lib\site-packages\django\contrib\auth\middleware.py", line 17, in get_user
+    request._cached_user = auth.get_user(request)
+                           ^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\HP\Django\env\Lib\site-packages\django\contrib\auth\__init__.py", line 209, in get_user
+    user_id = _get_user_session_key(request)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\HP\Django\env\Lib\site-packages\django\contrib\auth\__init__.py", line 62, in _get_user_session_key
+    return get_user_model()._meta.pk.to_python(request.session[SESSION_KEY])
+                                               ~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\HP\Django\env\Lib\site-packages\django\contrib\sessions\backends\base.py", line 55, in __getitem__
+    return self._session[key]
+           ^^^^^^^^^^^^^
+  File "C:\Users\HP\Django\env\Lib\site-packages\django\contrib\sessions\backends\base.py", line 249, in _get_session
+    self._session_cache = self.load()
+                          ^^^^^^^^^^^
+  File "C:\Users\HP\Django\env\Lib\site-packages\django\contrib\sessions\backends\db.py", line 55, in load
+    s = self._get_session_from_db()
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\HP\Django\env\Lib\site-packages\django\contrib\sessions\backends\db.py", line 34, in _get_session_from_db
+    return self.model.objects.get(
+           ^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\HP\Django\env\Lib\site-packages\django\db\models\manager.py", line 87, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\HP\Django\env\Lib\site-packages\django\db\models\query.py", line 645, in get
+    num = len(clone)
+          ^^^^^^^^^^
+  File "C:\Users\HP\Django\env\Lib\site-packages\django\db\models\query.py", line 382, in __len__
+    self._fetch_all()
+  File "C:\Users\HP\Django\env\Lib\site-packages\django\db\models\query.py", line 1928, in _fetch_all
+    self._result_cache = list(self._iterable_class(self))
+                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\HP\Django\env\Lib\site-packages\django\db\models\query.py", line 87, in __iter__
+    db = queryset.db
+         ^^^^^^^^^^^
+  File "C:\Users\HP\Django\env\Lib\site-packages\django\db\models\query.py", line 1816, in db
+    return self._db or router.db_for_read(self.model, **self._hints)
+                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\HP\Django\env\Lib\site-packages\django\db\utils.py", line 220, in _route_db
+    for router in self.routers:
+                  ^^^^^^^^^^^^
+  File "C:\Users\HP\Django\env\Lib\site-packages\django\utils\functional.py", line 47, in __get__
+    res = instance.__dict__[self.name] = self.func(instance)
+                                         ^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\HP\Django\env\Lib\site-packages\django\db\utils.py", line 211, in routers
+    router = import_string(r)()
+             ^^^^^^^^^^^^^^^^
+  File "C:\Users\HP\Django\env\Lib\site-packages\django\utils\module_loading.py", line 32, in import_string
+    raise ImportError(
+ImportError: Module "account.silk_db_router" does not define a "SilkDBRouter" attribute/class
+Internal Server Error: /check-database/
+Traceback (most recent call last):
+  File "C:\Users\HP\Django\env\Lib\site-packages\django\utils\module_loading.py", line 30, in import_string
+    return cached_import(module_path, class_name)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\HP\Django\env\Lib\site-packages\django\utils\module_loading.py", line 16, in cached_import
+    return getattr(module, class_name)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: module 'account.silk_db_router' has no attribute 'SilkDBRouter'
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\HP\Django\env\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\HP\Django\env\Lib\site-packages\silk\middleware.py", line 86, in __call__
+    self.process_request(request)
+  File "C:\Users\HP\Django\env\Lib\site-packages\silk\middleware.py", line 142, in process_request
+    request_model = RequestModelFactory(request).construct_request_model()
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\HP\Django\env\Lib\site-packages\silk\model_factory.py", line 230, in construct_request_model
+    request_model = models.Request.objects.create(
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\HP\Django\env\Lib\site-packages\django\db\models\manager.py", line 87, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\HP\Django\env\Lib\site-packages\django\db\models\query.py", line 679, in create
+    obj.save(force_insert=True, using=self.db)
+                                      ^^^^^^^
+  File "C:\Users\HP\Django\env\Lib\site-packages\django\db\models\query.py", line 1815, in db
+    return self._db or router.db_for_write(self.model, **self._hints)
+                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\HP\Django\env\Lib\site-packages\django\db\utils.py", line 220, in _route_db
+    for router in self.routers:
+                  ^^^^^^^^^^^^
+  File "C:\Users\HP\Django\env\Lib\site-packages\django\utils\functional.py", line 47, in __get__
+    res = instance.__dict__[self.name] = self.func(instance)
+                                         ^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\HP\Django\env\Lib\site-packages\django\db\utils.py", line 211, in routers
+    router = import_string(r)()
+             ^^^^^^^^^^^^^^^^
+  File "C:\Users\HP\Django\env\Lib\site-packages\django\utils\module_loading.py", line 32, in import_string
+    raise ImportError(
+ImportError: Module "account.silk_db_router" does not define a "SilkDBRouter" attribute/class
+Internal Server Error: /favicon.ico
+Traceback (most recent call last):
+  File "C:\Users\HP\Django\env\Lib\site-packages\django\utils\module_loading.py", line 30, in import_string
+    return cached_import(module_path, class_name)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\HP\Django\env\Lib\site-packages\django\utils\module_loading.py", line 16, in cached_import
+    return getattr(module, class_name)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: module 'account.silk_db_router' has no attribute 'SilkDBRouter'
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\HP\Django\env\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\HP\Django\env\Lib\site-packages\silk\middleware.py", line 86, in __call__
+    self.process_request(request)
+  File "C:\Users\HP\Django\env\Lib\site-packages\silk\middleware.py", line 142, in process_request
+    request_model = RequestModelFactory(request).construct_request_model()
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\HP\Django\env\Lib\site-packages\silk\model_factory.py", line 230, in construct_request_model
+    request_model = models.Request.objects.create(
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\HP\Django\env\Lib\site-packages\django\db\models\manager.py", line 87, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\HP\Django\env\Lib\site-packages\django\db\models\query.py", line 679, in create
+    obj.save(force_insert=True, using=self.db)
+                                      ^^^^^^^
+  File "C:\Users\HP\Django\env\Lib\site-packages\django\db\models\query.py", line 1815, in db
+    return self._db or router.db_for_write(self.model, **self._hints)
+                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\HP\Django\env\Lib\site-packages\django\db\utils.py", line 220, in _route_db
+    for router in self.routers:
+                  ^^^^^^^^^^^^
+  File "C:\Users\HP\Django\env\Lib\site-packages\django\utils\functional.py", line 47, in __get__
+    res = instance.__dict__[self.name] = self.func(instance)
+                                         ^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\HP\Django\env\Lib\site-packages\django\db\utils.py", line 211, in routers
+    router = import_string(r)()
+             ^^^^^^^^^^^^^^^^
+  File "C:\Users\HP\Django\env\Lib\site-packages\django\utils\module_loading.py", line 32, in import_string
+    raise ImportError(
+ImportError: Module "account.silk_db_router" does not define a "SilkDBRouter" attribute/class
+C:\Users\HP\Django\djangoauthapi\account\silk_db_router.py changed, reloading.
+Watching for file changes with StatReloader
+C:\Users\HP\Django\djangoauthapi\demo\views.py changed, reloading.
+Watching for file changes with StatReloader
+C:\Users\HP\Django\djangoauthapi\demo\views.py changed, reloading.
+Watching for file changes with StatReloader
+Internal Server Error: /check-database/
+Traceback (most recent call last):
+  File "C:\Users\HP\Django\env\Lib\site-packages\django\utils\module_loading.py", line 30, in import_string
+    return cached_import(module_path, class_name)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\HP\Django\env\Lib\site-packages\django\utils\module_loading.py", line 16, in cached_import
+    return getattr(module, class_name)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: module 'account.silk_db_router' has no attribute 'SilkDBRouter'. Did you mean: 'SilkDBbaseRouter'?
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\HP\Django\env\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\HP\Django\env\Lib\site-packages\silk\middleware.py", line 86, in __call__
+    self.process_request(request)
+  File "C:\Users\HP\Django\env\Lib\site-packages\silk\middleware.py", line 142, in process_request
+    request_model = RequestModelFactory(request).construct_request_model()
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\HP\Django\env\Lib\site-packages\silk\model_factory.py", line 230, in construct_request_model
+    request_model = models.Request.objects.create(
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\HP\Django\env\Lib\site-packages\django\db\models\manager.py", line 87, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\HP\Django\env\Lib\site-packages\django\db\models\query.py", line 679, in create
+    obj.save(force_insert=True, using=self.db)
+                                      ^^^^^^^
+  File "C:\Users\HP\Django\env\Lib\site-packages\django\db\models\query.py", line 1815, in db
+    return self._db or router.db_for_write(self.model, **self._hints)
+                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\HP\Django\env\Lib\site-packages\django\db\utils.py", line 220, in _route_db
+    for router in self.routers:
+                  ^^^^^^^^^^^^
+  File "C:\Users\HP\Django\env\Lib\site-packages\django\utils\functional.py", line 47, in __get__
+    res = instance.__dict__[self.name] = self.func(instance)
+                                         ^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\HP\Django\env\Lib\site-packages\django\db\utils.py", line 211, in routers
+    router = import_string(r)()
+             ^^^^^^^^^^^^^^^^
+  File "C:\Users\HP\Django\env\Lib\site-packages\django\utils\module_loading.py", line 32, in import_string
+    raise ImportError(
+ImportError: Module "account.silk_db_router" does not define a "SilkDBRouter" attribute/class
+Internal Server Error: /favicon.ico
+Traceback (most recent call last):
+  File "C:\Users\HP\Django\env\Lib\site-packages\django\utils\module_loading.py", line 30, in import_string
+    return cached_import(module_path, class_name)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\HP\Django\env\Lib\site-packages\django\utils\module_loading.py", line 16, in cached_import
+    return getattr(module, class_name)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: module 'account.silk_db_router' has no attribute 'SilkDBRouter'. Did you mean: 'SilkDBbaseRouter'?
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\HP\Django\env\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\HP\Django\env\Lib\site-packages\silk\middleware.py", line 86, in __call__
+    self.process_request(request)
+  File "C:\Users\HP\Django\env\Lib\site-packages\silk\middleware.py", line 142, in process_request
+    request_model = RequestModelFactory(request).construct_request_model()
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\HP\Django\env\Lib\site-packages\silk\model_factory.py", line 230, in construct_request_model
+    request_model = models.Request.objects.create(
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\HP\Django\env\Lib\site-packages\django\db\models\manager.py", line 87, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\HP\Django\env\Lib\site-packages\django\db\models\query.py", line 679, in create
+    obj.save(force_insert=True, using=self.db)
+                                      ^^^^^^^
+  File "C:\Users\HP\Django\env\Lib\site-packages\django\db\models\query.py", line 1815, in db
+    return self._db or router.db_for_write(self.model, **self._hints)
+                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\HP\Django\env\Lib\site-packages\django\db\utils.py", line 220, in _route_db
+    for router in self.routers:
+                  ^^^^^^^^^^^^
+  File "C:\Users\HP\Django\env\Lib\site-packages\django\utils\functional.py", line 47, in __get__
+    res = instance.__dict__[self.name] = self.func(instance)
+                                         ^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\HP\Django\env\Lib\site-packages\django\db\utils.py", line 211, in routers
+    router = import_string(r)()
+             ^^^^^^^^^^^^^^^^
+  File "C:\Users\HP\Django\env\Lib\site-packages\django\utils\module_loading.py", line 32, in import_string
+    raise ImportError(
+ImportError: Module "account.silk_db_router" does not define a "SilkDBRouter" attribute/class
+Internal Server Error: /check-database/
+Traceback (most recent call last):
+  File "C:\Users\HP\Django\env\Lib\site-packages\django\utils\module_loading.py", line 30, in import_string
+    return cached_import(module_path, class_name)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\HP\Django\env\Lib\site-packages\django\utils\module_loading.py", line 16, in cached_import
+    return getattr(module, class_name)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: module 'account.silk_db_router' has no attribute 'SilkDBRouter'. Did you mean: 'SilkDBbaseRouter'?
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\HP\Django\env\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\HP\Django\env\Lib\site-packages\silk\middleware.py", line 86, in __call__
+    self.process_request(request)
+  File "C:\Users\HP\Django\env\Lib\site-packages\silk\middleware.py", line 142, in process_request
+    request_model = RequestModelFactory(request).construct_request_model()
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\HP\Django\env\Lib\site-packages\silk\model_factory.py", line 230, in construct_request_model
+    request_model = models.Request.objects.create(
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\HP\Django\env\Lib\site-packages\django\db\models\manager.py", line 87, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\HP\Django\env\Lib\site-packages\django\db\models\query.py", line 679, in create
+    obj.save(force_insert=True, using=self.db)
+                                      ^^^^^^^
+  File "C:\Users\HP\Django\env\Lib\site-packages\django\db\models\query.py", line 1815, in db
+    return self._db or router.db_for_write(self.model, **self._hints)
+                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\HP\Django\env\Lib\site-packages\django\db\utils.py", line 220, in _route_db
+    for router in self.routers:
+                  ^^^^^^^^^^^^
+  File "C:\Users\HP\Django\env\Lib\site-packages\django\utils\functional.py", line 47, in __get__
+    res = instance.__dict__[self.name] = self.func(instance)
+                                         ^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\HP\Django\env\Lib\site-packages\django\db\utils.py", line 211, in routers
+    router = import_string(r)()
+             ^^^^^^^^^^^^^^^^
+  File "C:\Users\HP\Django\env\Lib\site-packages\django\utils\module_loading.py", line 32, in import_string
+    raise ImportError(
+ImportError: Module "account.silk_db_router" does not define a "SilkDBRouter" attribute/class
+Internal Server Error: /favicon.ico
+Traceback (most recent call last):
+  File "C:\Users\HP\Django\env\Lib\site-packages\django\utils\module_loading.py", line 30, in import_string
+    return cached_import(module_path, class_name)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\HP\Django\env\Lib\site-packages\django\utils\module_loading.py", line 16, in cached_import
+    return getattr(module, class_name)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: module 'account.silk_db_router' has no attribute 'SilkDBRouter'. Did you mean: 'SilkDBbaseRouter'?
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\HP\Django\env\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\HP\Django\env\Lib\site-packages\silk\middleware.py", line 86, in __call__
+    self.process_request(request)
+  File "C:\Users\HP\Django\env\Lib\site-packages\silk\middleware.py", line 142, in process_request
+    request_model = RequestModelFactory(request).construct_request_model()
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\HP\Django\env\Lib\site-packages\silk\model_factory.py", line 230, in construct_request_model
+    request_model = models.Request.objects.create(
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\HP\Django\env\Lib\site-packages\django\db\models\manager.py", line 87, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\HP\Django\env\Lib\site-packages\django\db\models\query.py", line 679, in create
+    obj.save(force_insert=True, using=self.db)
+                                      ^^^^^^^
+  File "C:\Users\HP\Django\env\Lib\site-packages\django\db\models\query.py", line 1815, in db
+    return self._db or router.db_for_write(self.model, **self._hints)
+                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\HP\Django\env\Lib\site-packages\django\db\utils.py", line 220, in _route_db
+    for router in self.routers:
+                  ^^^^^^^^^^^^
+  File "C:\Users\HP\Django\env\Lib\site-packages\django\utils\functional.py", line 47, in __get__
+    res = instance.__dict__[self.name] = self.func(instance)
+                                         ^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\HP\Django\env\Lib\site-packages\django\db\utils.py", line 211, in routers
+    router = import_string(r)()
+             ^^^^^^^^^^^^^^^^
+  File "C:\Users\HP\Django\env\Lib\site-packages\django\utils\module_loading.py", line 32, in import_string
+    raise ImportError(
+ImportError: Module "account.silk_db_router" does not define a "SilkDBRouter" attribute/class
+Internal Server Error: /check-database/
+Traceback (most recent call last):
+  File "C:\Users\HP\Django\env\Lib\site-packages\django\utils\module_loading.py", line 30, in import_string
+    return cached_import(module_path, class_name)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\HP\Django\env\Lib\site-packages\django\utils\module_loading.py", line 16, in cached_import
+    return getattr(module, class_name)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: module 'account.silk_db_router' has no attribute 'SilkDBRouter'. Did you mean: 'SilkDBbaseRouter'?
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\HP\Django\env\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\HP\Django\env\Lib\site-packages\silk\middleware.py", line 86, in __call__
+    self.process_request(request)
+  File "C:\Users\HP\Django\env\Lib\site-packages\silk\middleware.py", line 142, in process_request
+    request_model = RequestModelFactory(request).construct_request_model()
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\HP\Django\env\Lib\site-packages\silk\model_factory.py", line 230, in construct_request_model
+    request_model = models.Request.objects.create(
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\HP\Django\env\Lib\site-packages\django\db\models\manager.py", line 87, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\HP\Django\env\Lib\site-packages\django\db\models\query.py", line 679, in create
+    obj.save(force_insert=True, using=self.db)
+                                      ^^^^^^^
+  File "C:\Users\HP\Django\env\Lib\site-packages\django\db\models\query.py", line 1815, in db
+    return self._db or router.db_for_write(self.model, **self._hints)
+                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\HP\Django\env\Lib\site-packages\django\db\utils.py", line 220, in _route_db
+    for router in self.routers:
+                  ^^^^^^^^^^^^
+  File "C:\Users\HP\Django\env\Lib\site-packages\django\utils\functional.py", line 47, in __get__
+    res = instance.__dict__[self.name] = self.func(instance)
+                                         ^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\HP\Django\env\Lib\site-packages\django\db\utils.py", line 211, in routers
+    router = import_string(r)()
+             ^^^^^^^^^^^^^^^^
+  File "C:\Users\HP\Django\env\Lib\site-packages\django\utils\module_loading.py", line 32, in import_string
+    raise ImportError(
+ImportError: Module "account.silk_db_router" does not define a "SilkDBRouter" attribute/class
+Internal Server Error: /favicon.ico
+Traceback (most recent call last):
+  File "C:\Users\HP\Django\env\Lib\site-packages\django\utils\module_loading.py", line 30, in import_string
+    return cached_import(module_path, class_name)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\HP\Django\env\Lib\site-packages\django\utils\module_loading.py", line 16, in cached_import
+    return getattr(module, class_name)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: module 'account.silk_db_router' has no attribute 'SilkDBRouter'. Did you mean: 'SilkDBbaseRouter'?
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\HP\Django\env\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\HP\Django\env\Lib\site-packages\silk\middleware.py", line 86, in __call__
+    self.process_request(request)
+  File "C:\Users\HP\Django\env\Lib\site-packages\silk\middleware.py", line 142, in process_request
+    request_model = RequestModelFactory(request).construct_request_model()
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\HP\Django\env\Lib\site-packages\silk\model_factory.py", line 230, in construct_request_model
+    request_model = models.Request.objects.create(
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\HP\Django\env\Lib\site-packages\django\db\models\manager.py", line 87, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\HP\Django\env\Lib\site-packages\django\db\models\query.py", line 679, in create
+    obj.save(force_insert=True, using=self.db)
+                                      ^^^^^^^
+  File "C:\Users\HP\Django\env\Lib\site-packages\django\db\models\query.py", line 1815, in db
+    return self._db or router.db_for_write(self.model, **self._hints)
+                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\HP\Django\env\Lib\site-packages\django\db\utils.py", line 220, in _route_db
+    for router in self.routers:
+                  ^^^^^^^^^^^^
+  File "C:\Users\HP\Django\env\Lib\site-packages\django\utils\functional.py", line 47, in __get__
+    res = instance.__dict__[self.name] = self.func(instance)
+                                         ^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\HP\Django\env\Lib\site-packages\django\db\utils.py", line 211, in routers
+    router = import_string(r)()
+             ^^^^^^^^^^^^^^^^
+  File "C:\Users\HP\Django\env\Lib\site-packages\django\utils\module_loading.py", line 32, in import_string
+    raise ImportError(
+ImportError: Module "account.silk_db_router" does not define a "SilkDBRouter" attribute/class
+C:\Users\HP\Django\djangoauthapi\account\silk_db_router.py changed, reloading.
+Watching for file changes with StatReloader
+Exhausted _process_response attempts; not processing request
+Exhausted _process_response attempts; not processing request
+Not Found: /favicon.ico
+User Registration: {'email': 'chinu@example.com', 'name': 'chinu', 'password': 'Pass@123', 'password2': 'Pass@123', 'tc': 'True'} - Response: {'refresh': 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoicmVmcmVzaCIsImV4cCI6MTc0Mzc4NzQxMiwiaWF0IjoxNzQzNzAxMDEyLCJqdGkiOiIzNWIzMmNjMTc4MzI0NWViYmQ0NjM2YzcwMzk5ZDhkMyIsInVzZXJfaWQiOjV9.hvHP-Vs6nZkVpYCyeAOwHxMQXDbdatX9O9g6X54uk7s', 'access': 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzQzNzAyMjEyLCJpYXQiOjE3NDM3MDEwMTIsImp0aSI6IjhlYjIwYjdjMzdiMDQ2MjNhNzg3OTAzNGM3Nzc4ZWZlIiwidXNlcl9pZCI6NX0.TmsUy0jS31GS_59GPdXFY02xn2w-87h38Cf9U9V2WZs'}
+Exhausted _process_response attempts; not processing request
+C:\Users\HP\Django\djangoauthapi\djangoauthapi1\settings.py changed, reloading.
+Watching for file changes with StatReloader
+C:\Users\HP\Django\djangoauthapi\djangoauthapi1\settings.py changed, reloading.
+Watching for file changes with StatReloader
+Exhausted _process_response attempts; not processing request
+C:\Users\HP\Django\djangoauthapi\djangoauthapi1\settings.py changed, reloading.
+Watching for file changes with StatReloader
+Exhausted _process_response attempts; not processing request

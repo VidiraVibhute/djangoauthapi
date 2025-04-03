@@ -1,7 +1,7 @@
 from django.contrib import admin
 from django.urls import path, include
 from account.views import user_profiles_view, method_details
-from demo.views import demo_profiles_view, demo_method_details
+from demo.views import demo_profiles_view, demo_method_details, check_database
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -17,5 +17,7 @@ urlpatterns = [
     path('silk/demo_prof/', demo_profiles_view, name = 'demo_profiling'),
     path('method-details/<str:method_name>/', method_details, name='method_details'),
     path('demo-method-details/<str:method_name>/', demo_method_details, name='demo_method_details'),
+    path('check-database/', check_database, name='check_database'),
+
 
 ]

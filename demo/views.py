@@ -1,4 +1,5 @@
-from itertools import count
+import os
+from django.conf import settings
 import logging
 from rest_framework.response import Response
 from rest_framework import status
@@ -23,6 +24,8 @@ from collections import defaultdict
 from rest_framework.decorators import api_view
 from functools import wraps
 from django.conf import settings
+from silk.middleware import SilkyMiddleware
+
 
 logger = logging.getLogger(__name__)
 
@@ -243,3 +246,23 @@ def demo_method_details(request, method_name):
         "method_name": method_name,
         "recent_requests": requests,
     })
+
+
+
+def check_database(request):
+    """
+    Check which Silk database is currently in use.
+    """
+    silk_db = "silk_live.sqlite3" if settings.IS_LIVE else "silk_dev.sqlite3"
+    return JsonResponse({"Silk Database in Use": silk_db})
+
+class CustomSilkMiddleware(SilkyMiddleware):
+    def process_request(self, request):
+        response = super().process_request(request)
+
+        if hasattr(request, 'silk_request') and request.silk_request:
+            db_name = "silk_live" if settings.IS_LIVE else "silk_dev"
+            logger.debug(f"Saving Silk request data to: {db_name}")
+            request.silk_request.save(using=db_name)
+
+        return response

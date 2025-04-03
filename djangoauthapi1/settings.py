@@ -61,6 +61,8 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 
     "account.middleware.SilkAdminOnlyMiddleware",
+    "demo.middleware.custom_silk_middleware.CustomSilkMiddleware",
+
     
 ]
 
@@ -103,16 +105,38 @@ WSGI_APPLICATION = 'djangoauthapi1.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/4.0/ref/settings/#databases
 
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.sqlite3',
+#         'NAME': BASE_DIR / 'db.sqlite3',
+#     },
+#     'silk': {
+#         'ENGINE': 'django.db.backends.sqlite3',
+#         'NAME': BASE_DIR / 'silk_db.sqlite3',
+#     }
+# }
+
+IS_LIVE = False  # or False, based on your environment
+
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
         'NAME': BASE_DIR / 'db.sqlite3',
     },
-    'silk': {
+    'silk_dev': {
         'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'silk_db.sqlite3',
-    }
+        'NAME': BASE_DIR / 'silk_dev.sqlite3',
+    },
+    'silk_live': {
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': BASE_DIR / 'silk_live.sqlite3',
+    },
 }
+
+# Set the Silk storage engine dynamically
+SILKY_STORAGE_ENGINE = 'silk_live' if IS_LIVE else 'silk_dev'
+
+    
 
 DATABASE_ROUTERS = ['account.silk_db_router.SilkDBRouter']
 
