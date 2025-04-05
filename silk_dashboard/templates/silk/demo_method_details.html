@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Method Details - {{ method_name }}</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body>
+
+<div class="container mx-auto py-4">
+    <h2 class="text-2xl text-center text-teal-600 font-semibold mb-6">Recent Requests for {{ method_name }}</h2>
+
+    <!-- Breadcrumbs -->
+    <nav aria-label="breadcrumb" class="my-3 px-6">
+        <ol class="breadcrumb flex text-lg font-semibold">
+            <li class="breadcrumb-item">
+                <a href="{% url 'silk:profiling' %}" class="text-teal-600 hover:underline">Profiling</a>
+            </li>
+            <li class="breadcrumb-item">
+                <a href="{% url 'demo_profiling' %}" class="text-teal-600 hover:underline">>Demo</a>
+            </li>
+            <li class="breadcrumb-item active text-gray-700" aria-current="page"> > {{ method_name }}</li>
+        </ol>
+    </nav>
+
+    <!-- Date-Time Picker & Filters -->
+    <div class="bg-white p-6 rounded-lg shadow-md">
+        <div class="flex flex-col md:flex-row justify-between items-center mb-4">
+            <h3 class="text-xl font-semibold text-teal-600">Recent Requests</h3>
+            
+            <div class="flex gap-4">
+                <label for="date-picker">Select Date:</label>
+                <input type="date" id="date-picker">
+
+                <label for="time-checkbox">
+                    <input type="checkbox" id="time-checkbox"> Enable Time Range
+                </label>
+            </div>
+
+            <!-- Time Range Inputs (Hidden by Default) -->
+            <div id="time-range-container" class="flex items-center gap-2 hidden">
+                <label for="time-start">Start:</label>
+                <input type="time" id="time-start">
+                <span class="mx-2">to</span>
+                <label for="time-end">End:</label>
+                <input type="time" id="time-end">
+            </div>
+
+            <button id="clear-filter" class="px-4 py-2 bg-red-500 text-white rounded-md">Clear Filter</button>
+        </div>
+
+        <!-- Requests Display -->
+        <div id="requests-container" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
+            {% for request in recent_requests %}
+                <div class="request-card p-4 border rounded-lg shadow-md"
+                     data-start-time="{{ request.start_time|date:'Y-m-d H:i:s' }}">
+                    <p><strong>Path:</strong> {{ request.path }}</p>
+                    <p><strong>Time:</strong> {{ request.time_taken }} ms</p>
+                    <p><strong>Start:</strong> {{ request.start_time }}</p>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+
+    <!-- Pagination Controls -->
+    <div id="pagination-wrapper" class="flex justify-center items-center mt-6">
+        <div id="pagination-controls" class="flex space-x-3">
+            <button onclick="prevPage()" id="prevBtn" class="px-4 py-2 bg-gray-300 text-gray-700 rounded-md">Prev</button>
+            <span id="pageIndicator" class="px-4 py-2 bg-teal-500 text-white rounded-md"></span>
+            <button onclick="nextPage()" id="nextBtn" class="px-4 py-2 bg-gray-300 text-gray-700 rounded-md">Next</button>
+        </div>
+    </div>
+    
+</div>
+
+<script>
+    const datePicker = document.getElementById('date-picker');
+    const timeCheckbox = document.getElementById('time-checkbox');
+    const timeRangeContainer = document.getElementById('time-range-container');
+    const timeStartInput = document.getElementById('time-start');
+    const timeEndInput = document.getElementById('time-end');
+    const requestsContainer = document.getElementById('requests-container');
+
+    let currentPage = 1;
+    const itemsPerPage = 6;
+    let allRequests = [];
+
+    function getCurrentDate() {
+        const now = new Date();
+        now.setMinutes(now.getMinutes() - now.getTimezoneOffset()); 
+        return now.toISOString().split("T")[0];
+    }
+
+    function getAllRequests() {
+        return Array.from(document.querySelectorAll('.request-card'));
+    }
+
+    function getFilteredRequests() {
+        const selectedDate = datePicker.value;
+        const useTimeRange = timeCheckbox.checked;
+        const startTime = timeStartInput.value || "00:00";
+        const endTime = timeEndInput.value || "23:59";
+
+        return allRequests.filter(card => {
+            const requestDateTime = new Date(card.getAttribute('data-start-time').replace(" ", "T"));
+            const requestDate = requestDateTime.toISOString().split("T")[0];
+            const requestTime = requestDateTime.toTimeString().slice(0, 5);
+
+            return requestDate === selectedDate &&
+                (!useTimeRange || (requestTime >= startTime && requestTime <= endTime));
+        });
+    }
+
+    function showPage(page) {
+        let filteredRequests = getFilteredRequests();
+        let start = (page - 1) * itemsPerPage;
+        let end = start + itemsPerPage;
+
+        allRequests.forEach(req => req.style.display = "none");
+        filteredRequests.slice(start, end).forEach(req => req.style.display = "block");
+
+        updatePaginationControls(filteredRequests.length);
+    }
+
+    function prevPage() {
+        if (currentPage > 1) {
+            currentPage--;
+            showPage(currentPage);
+        }
+    }
+
+    function nextPage() {
+        const totalPages = Math.ceil(getFilteredRequests().length / itemsPerPage);
+        if (currentPage < totalPages) {
+            currentPage++;
+            showPage(currentPage);
+        }
+    }
+
+    function filterRequests() {
+        currentPage = 1;
+        showPage(currentPage);
+    }
+
+    function showAllRequests() {
+        datePicker.value = getCurrentDate();
+        timeCheckbox.checked = false;
+        timeRangeContainer.classList.add("hidden");
+        filterRequests();
+    }
+
+    function updatePaginationControls(totalFiltered) {
+        const totalPages = Math.ceil(totalFiltered / itemsPerPage);
+        document.getElementById("pageIndicator").innerText = `Page ${currentPage} of ${totalPages}`;
+
+        document.getElementById("prevBtn").disabled = (currentPage === 1);
+        document.getElementById("nextBtn").disabled = (currentPage === totalPages);
+    }
+
+    timeCheckbox.addEventListener('change', function () {
+        timeRangeContainer.classList.toggle("hidden", !this.checked);
+        filterRequests();
+    });
+
+    document.getElementById('clear-filter').addEventListener('click', showAllRequests);
+
+    datePicker.addEventListener('change', filterRequests);
+    timeStartInput.addEventListener('change', filterRequests);
+    timeEndInput.addEventListener('change', filterRequests);
+
+    document.addEventListener("DOMContentLoaded", () => {
+        datePicker.value = getCurrentDate();
+        allRequests = getAllRequests();
+        filterRequests();
+    });
+
+</script>
+
+</body>
+</html>

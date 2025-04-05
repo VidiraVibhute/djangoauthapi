@@ -190,62 +190,34 @@ def silk_profiling_data(request):
     return JsonResponse(data, safe=False)
 
 # def demo_profiles_view(request):
-#     demo_profiles = Request.objects.filter(path__startswith="/api/demo").order_by('-start_time')
+#     methods = ["GET", "POST", "PUT", "DELETE"]
+#     method_data = []
 
-#     context = {
-#         'demo_profiles': demo_profiles,
-#     }
+#     for method in methods:
+#         requests = Request.objects.filter(method=method, path__startswith="/api/demo").order_by('-start_time')
 
-#     return render(request, 'silk/demo_profiling.html', context)
+#         avg_time = requests.aggregate(avg_time=Avg('time_taken'))['avg_time'] or 0  
 
-# def demo_profiles_view(request):
-#     # Fetch the profiling data for 'demo'
-#     demo_profiles = Request.objects.filter(path__startswith="/api/demo")
+#         overall_avg_result = Request.objects.filter(method=method, time_taken__isnull=False).exclude(time_taken=0).aggregate(avg_time=Avg('time_taken'))
+#         overall_avg_time = overall_avg_result['avg_time'] if overall_avg_result['avg_time'] is not None else 0  
 
-#     # Aggregate by method and calculate the average time taken for each method
-#     aggregated_profiles = demo_profiles.values('method').annotate(
-#         avg_time_taken=Avg('time_taken')
-#     )
+#         method_data.append({
+#             "method": method,
+#             "requests": requests[:5],  # Limit recent requests to 5
+#             "total_requests": requests.count(),
+#             "avg_time": round(avg_time, 2),
+#             "overall_avg_time": round(overall_avg_time, 2),
+#         })
 
-#     # Convert the QuerySet to a list of dictionaries (serializable)
-#     aggregated_profiles_list = list(aggregated_profiles)
+#     return render(request, "silk/demo_profiling.html", {"method_data": method_data})
 
-#     context = {
-#         'aggregated_profiles': aggregated_profiles_list,
-#     }
+# def demo_method_details(request, method_name):
+#     requests = Request.objects.filter(method=method_name, path__startswith="/api/demo").order_by('-start_time')
 
-#     return render(request, 'silk/demo_profiling.html', context)
-
-#methodwise
-def demo_profiles_view(request):
-    methods = ["GET", "POST", "PUT", "DELETE"]
-    method_data = []
-
-    for method in methods:
-        requests = Request.objects.filter(method=method, path__startswith="/api/demo").order_by('-start_time')
-
-        avg_time = requests.aggregate(avg_time=Avg('time_taken'))['avg_time'] or 0  
-
-        overall_avg_result = Request.objects.filter(method=method, time_taken__isnull=False).exclude(time_taken=0).aggregate(avg_time=Avg('time_taken'))
-        overall_avg_time = overall_avg_result['avg_time'] if overall_avg_result['avg_time'] is not None else 0  
-
-        method_data.append({
-            "method": method,
-            "requests": requests[:5],  # Limit recent requests to 5
-            "total_requests": requests.count(),
-            "avg_time": round(avg_time, 2),
-            "overall_avg_time": round(overall_avg_time, 2),
-        })
-
-    return render(request, "silk/demo_profiling.html", {"method_data": method_data})
-
-def demo_method_details(request, method_name):
-    requests = Request.objects.filter(method=method_name, path__startswith="/api/demo").order_by('-start_time')
-
-    return render(request, "silk/demo_method_details.html", {
-        "method_name": method_name,
-        "recent_requests": requests,
-    })
+#     return render(request, "silk/demo_method_details.html", {
+#         "method_name": method_name,
+#         "recent_requests": requests,
+#     })
 
 
 
@@ -256,13 +228,13 @@ def check_database(request):
     silk_db = "silk_live.sqlite3" if settings.IS_LIVE else "silk_dev.sqlite3"
     return JsonResponse({"Silk Database in Use": silk_db})
 
-class CustomSilkMiddleware(SilkyMiddleware):
-    def process_request(self, request):
-        response = super().process_request(request)
+# class CustomSilkMiddleware(SilkyMiddleware):
+#     def process_request(self, request):
+#         response = super().process_request(request)
 
-        if hasattr(request, 'silk_request') and request.silk_request:
-            db_name = "silk_live" if settings.IS_LIVE else "silk_dev"
-            logger.debug(f"Saving Silk request data to: {db_name}")
-            request.silk_request.save(using=db_name)
+#         if hasattr(request, 'silk_request') and request.silk_request:
+#             db_name = "silk_live" if settings.IS_LIVE else "silk_dev"
+#             logger.debug(f"Saving Silk request data to: {db_name}")
+#             request.silk_request.save(using=db_name)
 
-        return response
+#         return response

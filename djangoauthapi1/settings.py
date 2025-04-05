@@ -46,6 +46,7 @@ INSTALLED_APPS = [
     'account',
     'demo',
     'silk',
+    'silk_dashboard',
     
 ]
 
@@ -60,8 +61,8 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 
-    "account.middleware.SilkAdminOnlyMiddleware",
-    "demo.middleware.custom_silk_middleware.CustomSilkMiddleware",
+    "silk_dashboard.middleware.custom_silk_middleware.CustomSilkMiddleware",
+    "silk_dashboard.middleware.silk_admin_only_middleware.SilkAdminOnlyMiddleware",
 
     
 ]
@@ -83,9 +84,12 @@ REST_FRAMEWORK = {
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
+        # 'DIRS': [
+        #     BASE_DIR / "account/templates",
+        #     BASE_DIR / "demo/templates",
+        # ],
         'DIRS': [
-            BASE_DIR / "account/templates",
-            BASE_DIR / "demo/templates",
+            os.path.join(BASE_DIR, 'silk_dashboard', 'templates'),
         ],
         'APP_DIRS': True,
         'OPTIONS': {
@@ -116,7 +120,7 @@ WSGI_APPLICATION = 'djangoauthapi1.wsgi.application'
 #     }
 # }
 
-IS_LIVE = False  # or False, based on your environment
+IS_LIVE = True
 
 DATABASES = {
     'default': {
@@ -138,7 +142,7 @@ SILKY_STORAGE_ENGINE = 'silk_live' if IS_LIVE else 'silk_dev'
 
     
 
-DATABASE_ROUTERS = ['account.silk_db_router.SilkDBRouter']
+DATABASE_ROUTERS = ['silk_dashboard.silk_db_router.SilkDBRouter']
 
 # JWT Configuration
 REST_FRAMEWORK = {
